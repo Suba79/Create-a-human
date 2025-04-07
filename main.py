@@ -23,7 +23,7 @@ def generate_cards(num_cards=10, output_dir='results'):
     os.makedirs(output_dir, exist_ok=True)
     
 
-    CHAR_MAP = load_char_map('letters_mapping.txt')
+    char_map = load_char_map('letters_mapping.txt')
     fake = Faker("ru_RU")
 
     all_skills = [
@@ -50,9 +50,9 @@ def generate_cards(num_cards=10, output_dir='results'):
             "endurance": random.randint(3, 18),
             "intelligence": random.randint(3, 18),
             "luck": random.randint(3, 18),
-            "skill_1": stylize_text(selected_skills[0], CHAR_MAP),
-            "skill_2": stylize_text(selected_skills[1], CHAR_MAP),
-            "skill_3": stylize_text(selected_skills[2], CHAR_MAP)
+            "skill_1": stylize_text(selected_skills[0], char_map),
+            "skill_2": stylize_text(selected_skills[1], char_map),
+            "skill_3": stylize_text(selected_skills[2], char_map)
         }
 
         
@@ -60,8 +60,6 @@ def generate_cards(num_cards=10, output_dir='results'):
         
         
         file_operations.render_template("template.svg", filename, context)
-        
-        print(f'Создана карточка: {filename}')
 
 
 if __name__ == "__main__":
